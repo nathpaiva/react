@@ -4,6 +4,13 @@ import '../css/pure.min.css';
 import '../css/slide-menu.css';
 
 class App extends Component {
+
+  constructor() {
+    super();
+    // cria estado só na variavel state
+    this.state = { lista: [{ name: 'Nath', email: 'nath@nath.com.br', pass: '123456' }, { name: 'Teste', email: 'teste@teste.com.br', pass: '123456' }] };
+  }
+
   render() {
     return (
       <div id="layout">
@@ -16,9 +23,15 @@ class App extends Component {
             <a className="pure-menu-heading" href="#">Company</a>
 
             <ul className="pure-menu-list">
-              <li className="pure-menu-item"><a href="#" className="pure-menu-link">Home</a></li>
-              <li className="pure-menu-item"><a href="#" className="pure-menu-link">Autor</a></li>
-              <li className="pure-menu-item"><a href="#" className="pure-menu-link">Livros</a></li>
+              <li className="pure-menu-item">
+                <a href="#" className="pure-menu-link">Home</a>
+              </li>
+              <li className="pure-menu-item">
+                <a href="#" className="pure-menu-link">Autor</a>
+              </li>
+              <li className="pure-menu-item">
+                <a href="#" className="pure-menu-link">Livro</a>
+              </li>
             </ul>
           </div>
         </div>
@@ -58,10 +71,16 @@ class App extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Alberto</td>
-                    <td>alberto.souza@caelum.com.br</td>
-                  </tr>
+                  {
+                    this.state.lista.map(autor => {
+                      return (
+                        <tr>
+                          <td>{autor.name}</td>
+                          <td>{autor.email}</td>
+                        </tr>
+                      );
+                    })
+                  }
                 </tbody>
               </table>
             </div>
