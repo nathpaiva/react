@@ -3,12 +3,23 @@ import React, { Component } from 'react';
 import '../css/pure.min.css';
 import '../css/slide-menu.css';
 
+import $ from 'axios';
+
 class App extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     // cria estado só na variavel state
     this.state = { lista: [{ name: 'Nath', email: 'nath@nath.com.br', pass: '123456' }, { name: 'Teste', email: 'teste@teste.com.br', pass: '123456' }] };
+  }
+
+  componentDidMount() {
+    $.get('http://localhost:8080/api/autores').then((response) => {
+      var data = response.data;
+      if (data.length === 0) data = [{ name: 'Nath Mock', email: 'nath@nath.com.br', pass: '123456' }, { name: 'Teste', email: 'teste@teste.com.br', pass: '123456' }];
+
+      this.setState({ lista: data });
+    });
   }
 
   render() {
@@ -72,9 +83,9 @@ class App extends Component {
                 </thead>
                 <tbody>
                   {
-                    this.state.lista.map(autor => {
+                    this.state.lista.map((autor, i) => {
                       return (
-                        <tr>
+                        <tr key={`autor.name ${i}`}>
                           <td>{autor.name}</td>
                           <td>{autor.email}</td>
                         </tr>
