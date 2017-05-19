@@ -132,10 +132,15 @@ class AutorBox extends Component {
 
   render() {
     return (
-      <div className="content" id="content">
-        <FormAutor />
-        {/*<FormAutor callbackAtualizaLista={this.atualizaLista} />*/}
-        <ListaAutor lista={this.state.lista} />
+      <div>
+        <div className="header">
+          <h1>Cadastro de autores</h1>
+        </div>
+        <div className="content" id="content">
+          <FormAutor />
+          {/*<FormAutor callbackAtualizaLista={this.atualizaLista} />*/}
+          <ListaAutor lista={this.state.lista} />
+        </div>
       </div>
     );
   }

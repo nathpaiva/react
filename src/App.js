@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import '../css/pure.min.css';
 import '../css/slide-menu.css';
 
-import AutorBox from './componentes/AutorBox'
+import Menu from './componentes/Menu';
 
 class App extends Component {
   render() {
@@ -16,27 +16,13 @@ class App extends Component {
         <div id="menu">
           <div className="pure-menu">
             <a className="pure-menu-heading" href="#">Company</a>
-
-            <ul className="pure-menu-list">
-              <li className="pure-menu-item">
-                <a href="#" className="pure-menu-link">Home</a>
-              </li>
-              <li className="pure-menu-item">
-                <a href="#" className="pure-menu-link">Autor</a>
-              </li>
-              <li className="pure-menu-item">
-                <a href="#" className="pure-menu-link">Livro</a>
-              </li>
-            </ul>
+            <Menu label='Home' pathMenu='/' />
+            <Menu label='Autor' pathMenu='/autor' />
+            <Menu label='Livros' pathMenu='/livros' />
           </div>
         </div>
 
-        <div id="main">
-          <div className="header">
-            <h1>Cadastro de Autores</h1>
-          </div>
-          <AutorBox />
-        </div>
+        {this.props.children}
       </div>
     );
   }
